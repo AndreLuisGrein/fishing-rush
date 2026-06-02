@@ -1,3 +1,32 @@
 [gd_scene format=3 uid="uid://j8ld4xpb8le1"]
 
+[ext_resource type="Script" uid="uid://dayju18wkuo0m" path="res://character_body_2d.gd" id="1_0e48y"]
+[ext_resource type="Texture2D" uid="uid://byd8f4ycoqsyy" path="res://sprites/anzol.png" id="1_wtcfe"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0e48y"]
+load_path = "res://.godot/imported/background.png-0cfaafa94fbfb5267bc500b34e5eeb6d.ctex"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0e48y"]
+
 [node name="Node2D" type="Node2D" unique_id=1839056994]
+
+[node name="Background1" type="Sprite2D" parent="." unique_id=1193947801]
+position = Vector2(8, 1414)
+texture = SubResource("CompressedTexture2D_0e48y")
+
+[node name="Background2" type="Sprite2D" parent="." unique_id=1927713960]
+position = Vector2(8, 418)
+texture = SubResource("CompressedTexture2D_0e48y")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1754740866]
+script = ExtResource("1_0e48y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1972011952]
+shape = SubResource("RectangleShape2D_0e48y")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D" unique_id=638546380]
+scale = Vector2(0.62207025, 0.62109375)
+texture = ExtResource("1_wtcfe")
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=1542392922]
+zoom = Vector2(4, 4)
