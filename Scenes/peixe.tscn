@@ -2,8 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c8g860i0tkyv0" path="res://Scripts/peixe.gd" id="1_yd7nk"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_idg28"]
-size = Vector2(48, 17)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h16vb"]
 
 [node name="Peixe" type="RigidBody2D" unique_id=1189100072]
 gravity_scale = 0.0
@@ -14,6 +13,5 @@ metadata/_edit_group_ = true
 scale = Vector2(3, 3)
 
 [node name="ColissionPeixe" type="CollisionShape2D" parent="." unique_id=1417046297]
-position = Vector2(1, -0.5)
 scale = Vector2(3, 3)
-shape = SubResource("RectangleShape2D_idg28")
+shape = SubResource("RectangleShape2D_h16vb")

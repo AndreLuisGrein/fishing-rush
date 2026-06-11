@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://j8ld4xpb8le1"]
+
+[ext_resource type="Script" uid="uid://422f5fvs3abe" path="res://Scenes/cenario_teste_peixe.gd" id="1_18i8x"]
+[ext_resource type="Texture2D" uid="uid://bnwy3q5sc8t2j" path="res://icon.svg" id="1_kmdsg"]
+[ext_resource type="Script" uid="uid://b2nc7id38c1e4" path="res://Scripts/area_2d.gd" id="3_18i8x"]
+[ext_resource type="Script" uid="uid://cb88sd0y2yg4q" path="res://Scenes/anzol_fake.gd" id="4_n6m5y"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0e48y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kmdsg"]
+size = Vector2(71, 69)
+
+[node name="Node2D" type="Node2D" unique_id=1839056994]
+script = ExtResource("1_18i8x")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1517865717]
+z_index = -1
+position = Vector2(589.99994, 336.5001)
+scale = Vector2(9.296875, 20.664063)
+texture = ExtResource("1_kmdsg")
+
+[node name="Area2D2" type="Area2D" parent="." unique_id=626468083]
+position = Vector2(1166, 325)
+rotation = -3.1415925
+scale = Vector2(6.7669425, 5.129092)
+script = ExtResource("3_18i8x")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2" unique_id=864935342]
+rotation = 1.5707964
+shape = SubResource("WorldBoundaryShape2D_0e48y")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1723421391]
+position = Vector2(22, 70)
+script = ExtResource("3_18i8x")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1412268795]
+position = Vector2(2, 239.99998)
+rotation = 1.5707964
+scale = Vector2(5.6820316, 3.8093693)
+shape = SubResource("WorldBoundaryShape2D_0e48y")
+
+[node name="AnzolFake" type="CharacterBody2D" parent="." unique_id=2000287938]
+position = Vector2(575, -1290)
+script = ExtResource("4_n6m5y")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="AnzolFake" unique_id=918973287]
+position = Vector2(-28.999989, 28.499998)
+scale = Vector2(0.5468752, 0.55468756)
+texture = ExtResource("1_kmdsg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnzolFake" unique_id=1509544348]
+position = Vector2(-28.5, 27.5)
+shape = SubResource("RectangleShape2D_kmdsg")
+disabled = true
+
+[node name="Camera2D" type="Camera2D" parent="AnzolFake" unique_id=1019187612]
+
+[node name="Timer" type="Timer" parent="." unique_id=978466716]
+wait_time = 3.0
+
+[connection signal="body_entered" from="Area2D2" to="Area2D2" method="_on_body_entered"]
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
