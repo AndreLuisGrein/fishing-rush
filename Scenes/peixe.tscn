@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cgtsnki0nppj4"]
+
+[ext_resource type="Script" uid="uid://c8g860i0tkyv0" path="res://Scripts/peixe.gd" id="1_yd7nk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h16vb"]
+
+[node name="Peixe" type="Area2D" unique_id=174748371]
+script = ExtResource("1_yd7nk")
+metadata/_edit_group_ = true
+
+[node name="SpritePeixe" type="Sprite2D" parent="." unique_id=394895043]
+scale = Vector2(3, 3)
+
+[node name="ColissionPeixe" type="CollisionShape2D" parent="." unique_id=1417046297]
+scale = Vector2(3, 3)
+shape = SubResource("RectangleShape2D_h16vb")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
