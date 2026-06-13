@@ -1,17 +1,19 @@
 [gd_scene format=3 uid="uid://j8ld4xpb8le1"]
 
-[ext_resource type="Script" uid="uid://422f5fvs3abe" path="res://Scenes/cenario_teste_peixe.gd" id="1_18i8x"]
+[ext_resource type="Script" uid="uid://422f5fvs3abe" path="res://Scripts/cenario_teste_peixe.gd" id="1_18i8x"]
 [ext_resource type="Texture2D" uid="uid://bnwy3q5sc8t2j" path="res://icon.svg" id="1_kmdsg"]
 [ext_resource type="Script" uid="uid://b2nc7id38c1e4" path="res://Scripts/area_2d.gd" id="3_18i8x"]
-[ext_resource type="Script" uid="uid://cb88sd0y2yg4q" path="res://Scenes/anzol_fake.gd" id="4_n6m5y"]
+[ext_resource type="Script" uid="uid://cb88sd0y2yg4q" path="res://Scripts/anzol_fake.gd" id="4_n6m5y"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0e48y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kmdsg"]
 size = Vector2(71, 69)
 
-[node name="Node2D" type="Node2D" unique_id=1839056994]
+[node name="Node2D" type="Node2D" unique_id=1839056994 node_paths=PackedStringArray("camAnzol", "PeixeSpawnCowdown")]
 script = ExtResource("1_18i8x")
+camAnzol = NodePath("AnzolFake/Camera2D")
+PeixeSpawnCowdown = NodePath("PeixeSpawnCooldown")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=1517865717]
 z_index = -1
@@ -57,10 +59,13 @@ shape = SubResource("RectangleShape2D_kmdsg")
 disabled = true
 
 [node name="Camera2D" type="Camera2D" parent="AnzolFake" unique_id=1019187612]
+zoom = Vector2(0.37, 0.37)
+limit_left = -270
+limit_right = 1434
 
-[node name="Timer" type="Timer" parent="." unique_id=978466716]
+[node name="PeixeSpawnCooldown" type="Timer" parent="." unique_id=978466716]
 wait_time = 3.0
 
 [connection signal="body_entered" from="Area2D2" to="Area2D2" method="_on_body_entered"]
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="PeixeSpawnCooldown" to="." method="_on_timer_timeout"]

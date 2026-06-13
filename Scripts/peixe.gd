@@ -1,4 +1,4 @@
-extends RigidBody2D
+extends Area2D
 
 var SPEED = 300
 var direction = 1
@@ -15,19 +15,20 @@ func _ready() -> void:
 	spritePeixe.texture = load(caminhoTexturePeixe)
 	DefinirColission()
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	linear_velocity = Vector2(SPEED * direction, linear_velocity.y)
-	if linear_velocity.x < 0:
+	global_position.x += SPEED * direction * delta
+	if direction < 0:
 		spritePeixe.flip_h = false
-	elif linear_velocity.x > 0:
+	elif direction > 0:
 		spritePeixe.flip_h = true
-		
-		
+	
+	
 func DefinirColission():
 	var shape = RectangleShape2D.new()
 	var tamanho = spritePeixe.texture.get_size()
 	shape.size = tamanho
 	colissionPeixe.shape = shape
 	
+func _on_area_entered(area: Area2D) -> void:
+	direction *= -1
