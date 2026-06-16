@@ -14,12 +14,12 @@ config/name="fishing-rush"
 run/main_scene="uid://j8ld4xpb8le1"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
+run/size/mode=3
+run/size/viewport_height=320
+run/size/viewport_width=640
 
 [display]
 
-window/size/viewport_width=640
-window/size/viewport_height=320
-window/size/mode=3
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
 

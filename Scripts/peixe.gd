@@ -3,6 +3,7 @@ extends Area2D
 var SPEED = 300
 var direction = 1
 var rng = RandomNumberGenerator.new()
+var fisgado = false
 
 @onready var spritePeixe = $SpritePeixe
 @onready var colissionPeixe = $ColissionPeixe
@@ -17,11 +18,13 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	global_position.x += SPEED * direction * delta
-	if direction < 0:
-		spritePeixe.flip_h = false
-	elif direction > 0:
-		spritePeixe.flip_h = true
+	if (fisgado):
+		global_position = get_global_mouse_position()
+		set_rotation_degrees(90)
+
+	else:
+		global_position.x += SPEED * direction * delta
+		
 	
 	
 func DefinirColission():
@@ -31,4 +34,8 @@ func DefinirColission():
 	colissionPeixe.shape = shape
 	
 func _on_area_entered(area: Area2D) -> void:
-	direction *= -1
+	if(area.is_in_group("parede")):
+		direction *= -1
+		set_rotation_degrees(180)
+	elif(area.is_in_group("anzol")):
+		fisgado = true
